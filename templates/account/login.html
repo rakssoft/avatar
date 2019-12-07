@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+    <h1>Log-in</h1>
+    <p>Пожалуйста, используйте следующую форму для входа в систему. Если у вас нет учетной записи <a href="{% url "register" %}">регистрируйтесь здесь</a></p>
+    <form action="." method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Авторизоваться"></p>
+    </form>
+
+
+{% endblock content %}

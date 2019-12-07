@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+             <ul class="menu">
+
+                 <li {% if section == "images" %}class="selected"{% endif %}>
+                     <a href="#">Images</a>
+                 </li>
+                 <li {% if section == "people" %}class="selected"{% endif %}>
+                     <a href="#">People</a>
+                 </li>
+             </ul>
+            </div>
+
+
+            <div class="col-6">
+                3 из 3 (широкая)
+            </div>
+        </div>
+    </div>
+
+    <h1>Dashboard</h1>
+    <p>Welcome to your dashboard. You can <a href="{% url "edit" %}">edit your profile</a> or
+        <a href="{% url "password_change" %}">change your password</a>.</p>
+     {% endif %}
+
+
+
+{% endblock content %}
