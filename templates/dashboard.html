@@ -26,7 +26,7 @@
 
                 <img src="{{ profile.photo.url }}" style="width: 200px; height: 128px ">
                 <li><a href="#">Друзья</a></li>
-                <li><a href="#">Активные цели</a></li>
+                <li><a href="{% url 'goals' %}">Активные цели</a></li>
 
 
             </div>
@@ -45,6 +45,8 @@
             </div>
         </div>
     </div>
+
+
 {% endif %}
 
 

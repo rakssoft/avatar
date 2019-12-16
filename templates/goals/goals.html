@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+
+
+
+
+  <div class="thumb-goals">
+   <img src="/media/goals/discipline.jpg" alt="Фотография 1" width="300" height="300" style="padding-left: 3px">
+   <img src="/media/goals/games.jpg" alt="Фотография 2" width="300" height="300" style="padding-left: 3px">
+   <img src="/media/goals/languages.jpg" alt="Фотография 3" width="300" height="300" style="padding-left: 3px">
+   <img src="/media/goals/money.jpg" alt="Фотография 4" width="300" height="300"style="margin-top:10px; padding-left: 3px"  >
+   <img src="/media/goals/music.jpg" alt="Фотография 5" width="300" height="300"style="margin-top:10px; padding-left: 3px">
+   <img src="/media/goals/science.jpg" alt="Фотография 6" width="300" height="300"style="margin-top:10px; padding-left: 3px">
+
+  </div>
+
+
+
+
+    {% endif %}
+
+
+{% endblock content %}
