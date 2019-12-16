@@ -30,8 +30,18 @@ def edit(request):
 
 @login_required
 def dashboard(request):
+    product = Product.objects.get()
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'product': product,
+        # 'achievement': achievement,
+        'profile': profile
 
-    return render(request,  'dashboard.html', {'section': 'dashboard'})
+    }
+
+
+    # return render(request,   'dashboard.html', {'section': 'dashboard'}, context,)
+    return render(request,   'dashboard.html', context,)
 
 
 
@@ -80,12 +90,11 @@ def product(request):
 
     product = Product.objects.get()
     profile = Profile.objects.get(user=request.user)
-    achievement = Achievement.objects.get(achiever=request.user)
-
+    # achievement = Profile.objects.get(achievement=request.user)
 
     context = {
         'product': product,
-        'achievement': achievement,
+        # 'achievement': achievement,
         'profile': profile
 
     }

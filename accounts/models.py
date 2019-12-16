@@ -15,16 +15,9 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
-
-
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(default=0)
     email = models.EmailField(null=False)
-
-
-
-
-
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
@@ -37,16 +30,10 @@ class Product(models.Model):
     def get_absolut_url(self):
         return reverse('product', kwargs={ self.title})
 
-
-
-
-
 class Achievement(models.Model):
     name = models.CharField(max_length=120)
-
     # status = models.BooleanField()
     # goal = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
-    achiever = models.ForeignKey(Profile)
     def __str__(self):
         return self.name
 
@@ -55,22 +42,6 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT)
-    achievements = models.ManyToManyField(Achievement, through='Achieved')
+    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
     def __str__(self):
         return 'Profile for user {}'.format(self.user)
-
-class Achievement(models.Model):
-    game = models.ForeignKey(Game)
-    ...
-
-class Game(models.Model):
-    ...
-
-class GameProfile(models.Model):
-    achievements = models.ManyToManyField(Achievement, through='Achieved')
-    ...
-
-class Achieved(models.Model):
-    profile = models.ForeignKey(GameProfile)
-    achievement = models.ForeignKey(Achievement)
-    curr_count = models.PositiveSmallIntegerField()

@@ -4,8 +4,9 @@
 
 {% if request.user.is_authenticated %}
 {{ product.title }}
-    {{ achievement.name }}
+
     {{ request.user.username}}
+    {{ profile.achievement }}
 
 
    <img  src="{{ profile.photo.url }}" style="width: 20%; height: 20% " >
@@ -15,4 +16,7 @@
 {%  endblock content %}
 
 
- (ie achievements = game.achievement_set.all).  {% for ach in achievements %}
+
+
+
+

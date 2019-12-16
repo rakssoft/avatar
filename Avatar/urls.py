@@ -32,6 +32,7 @@ urlpatterns = [
     path('product/', product, name='product'),
 
 
+
     # path('', include('Base.urls')),
 ]
 

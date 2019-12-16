@@ -3,32 +3,49 @@
 {% block title %}Dashboard{% endblock %}
 {% block content %}
 {% if request.user.is_authenticated %}
-    <div class="container">
+    <div class="container-dashboard ">
         <div class="row">
             <div class="col">
+                <ul class="menu">
 
-             <ul class="menu">
+                 <li><a href="{% url 'dashboard'%}">Моя страница</a></li>
+                 <li><a href="#">Сообщения</a></li>
+                 <li><a href="#">Новости</a></li>
+                 <li><a href="#">Достижения</a></li>
+                 <li><a href="#">Группы</a></li>
+                 <li><a href="#">Мои цели</a></li>
+                 <li><a href="#">Игры</a></li>
+                 <li><a href="#">Видео</a></li>
+                 <li><a href="#">Музыка</a></li>
 
-                 <li {% if section == "images" %}class="selected"{% endif %}>
-                     <a href="#">Images</a>
-                 </li>
-                 <li {% if section == "people" %}class="selected"{% endif %}>
-                     <a href="#">People</a>
-                 </li>
              </ul>
+
+            </div>
+
+            <div class="col">
+
+                <img src="{{ profile.photo.url }}" style="width: 200px; height: 128px ">
+                <li><a href="#">Друзья</a></li>
+                <li><a href="#">Активные цели</a></li>
+
+
             </div>
 
 
             <div class="col-6">
-                3 из 3 (широкая)
+
+                <H4> {{ request.user.username}} {{ request.user.last_name}} </H4>
+
+                <p>Дата рождения  {{ profile.date_of_birth }} </p>
+
+
+                 {{ product.title }}
+                {{ profile.achievement }}
+
             </div>
         </div>
     </div>
-
-    <h1>Dashboard</h1>
-    <p>Welcome to your dashboard. You can <a href="{% url "edit" %}">edit your profile</a> or
-        <a href="{% url "password_change" %}">change your password</a>.</p>
-     {% endif %}
+{% endif %}
 
 
 
