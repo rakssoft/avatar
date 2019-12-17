@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+
+
+
+
+
+
+   <img src="/media/goals/money.jpg" alt="Фотография 4" width="300" height="300"style="margin-top:10px; padding-left: 3px; float: left"  >
+
+    <h4>Выберите свой путь</h4>
+<form method="get">
+    <p><input type="checkbox" name="checks[]"  value="1"> Финансовая безопасность</p>
+   <p><input type="checkbox" name="checks[]"   value="2"> Финансовая стабильность</p>
+   <p><input type="checkbox" name="checks[]"  value="3"> Финансовая независимость</p>
+   <p><input type="checkbox" name="checks[]"   value="4"> Финансовая свобода</p>
+
+
+   <p><input type="submit" value="Отправить" name="print_btn"></p>
+
+
+
+
+</form>
+
+
+    {% endif %}
+
+
+{% endblock content %}
