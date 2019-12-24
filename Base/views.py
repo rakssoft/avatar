@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from accounts.models import *
 
 # Create your views here.
 
@@ -28,9 +29,35 @@ def money(request):
 
     if (request.GET.get('print_btn')):
         if some_var == ['1']:
-            return render(request, 'goals/finsec.html')
+            # ava = Achievement.objects.get(id=2)
+            # print(ava)
+            profile = Profile.objects.get(user=request.user)
+            context = {
+                # 'achievement': achievement,
+                'profile': profile
+            }
+            print("Профиль итд ..." +  profile.achievement.name)
+            Profile.achievement = Achievement.objects.get(id=2)
+            Profile.achievement._save_parents(Achievement.objects.get(id=2), Profile.achievement)
+
+            print(profile.achievement.name)
+            # Profile.achievement.save()
+
+
+            return render(request, 'goals/finsec.html', context)
         elif some_var == ['2']:
+            profile = Profile.objects.get(user=request.user)
+            context = {
+                # 'achievement': achievement,
+                'profile': profile
+            }
+            print("Профиль итд ..." + profile.achievement.name)
+            Profile.achievement = Achievement.objects.get(id=1)
+            print(profile.achievement.name)
+            Profile.achievement.save()
             return render(request, 'goals/finstab.html')
+
+
         elif some_var == ['3']:
             return render(request, 'goals/finind.html')
         elif some_var == ['4']:
@@ -39,12 +66,20 @@ def money(request):
             print("error")
     return render(request, 'goals/money.html')
 
-def hello(self):
-    print('Hello!' )
+
 
 def finsec(request):
     print("finsecurity")
-    return render(request, 'goals/finsec.html')
+
+    profile = Profile.objects.get(user=request.user)
+    context = {
+
+        # 'achievement': achievement,
+        'profile': profile
+
+    }
+
+    return render(request, 'goals/finsec.html', context,)
 
 def finstab(request):
 

@@ -20,6 +20,7 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     profile = Profile
 
+
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Brand)
 admin.site.register(Product)

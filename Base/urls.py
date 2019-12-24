@@ -6,6 +6,6 @@ from Base.views import *
 
 urlpatterns = [
 
-    # path('goals/', goals, name='goals'),
-    # path('money/', money, name='money'),
+    path('goals/', goals, name='goals'),
+    path('money/', money, name='money'),
 ]
