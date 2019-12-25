@@ -19,16 +19,6 @@ class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(default=0)
     email = models.EmailField(null=False)
 
-class Product(models.Model):
-    title = models.CharField(max_length=120)
-    # achievement = models.ForeignKey(Achievement, on_delete = models.CASCADE)
-    # achievement = models.ForeignKey(Achievement)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolut_url(self):
-        return reverse('product', kwargs={ self.title})
 
 class Achievement(models.Model):
     name = models.CharField(max_length=120)
@@ -41,7 +31,7 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
-    brand = models.ForeignKey(Brand, on_delete=models.PROTECT)
-    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE)
+    achievement = models.ForeignKey(Achievement, null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return 'Profile for user {}'.format(self.user)

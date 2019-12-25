@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+
+
+
+
+
+
+   <img src="/media/goals/money.jpg" alt="Фотография 4" width="300" height="300"style="margin-top:10px; padding-left: 3px; float: left"  >
+
+    <h4>Финансовая безопасность.</h4>
+    <h4>Точка А.</h4>
+   <p><input type="number" size="3" name="num" min="1" max="100000" value="1"{{ pointa.income }}></p>
+
+
+
+{#      income = models.IntegerField(max_length=10)  #доходы#}
+{#    costs = models.IntegerField(max_length=10)   #расходы#}
+{#    debts = models.IntegerField(max_length=10)    #долги#}
+{#    assets = models.IntegerField(max_length=10)       #активы#}
+{#    capital = models.IntegerField(max_length=11)   # капитал#}
+{#    date_of_day = models.DateField(blank=True, null=True)   #текущая дата#}
+
+
+
+    {% endif %}
+
+
+{% endblock content %}

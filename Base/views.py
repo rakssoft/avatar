@@ -29,35 +29,25 @@ def money(request):
 
     if (request.GET.get('print_btn')):
         if some_var == ['1']:
-            # ava = Achievement.objects.get(id=2)
-            # print(ava)
+            achiv = Achievement.objects.get(id=2)
             profile = Profile.objects.get(user=request.user)
+            profile.achievement = achiv
+            profile.save()
             context = {
-                # 'achievement': achievement,
+
                 'profile': profile
-            }
-            print("Профиль итд ..." +  profile.achievement.name)
-            Profile.achievement = Achievement.objects.get(id=2)
-            Profile.achievement._save_parents(Achievement.objects.get(id=2), Profile.achievement)
-
-            print(profile.achievement.name)
-            # Profile.achievement.save()
-
-
+                 }
             return render(request, 'goals/finsec.html', context)
         elif some_var == ['2']:
+            achiv = Achievement.objects.get(id=1)
             profile = Profile.objects.get(user=request.user)
+            profile.achievement = achiv
+            profile.save()
             context = {
-                # 'achievement': achievement,
+
                 'profile': profile
             }
-            print("Профиль итд ..." + profile.achievement.name)
-            Profile.achievement = Achievement.objects.get(id=1)
-            print(profile.achievement.name)
-            Profile.achievement.save()
-            return render(request, 'goals/finstab.html')
-
-
+            return render(request,  'goals/finstab.html', context)
         elif some_var == ['3']:
             return render(request, 'goals/finind.html')
         elif some_var == ['4']:
@@ -66,20 +56,12 @@ def money(request):
             print("error")
     return render(request, 'goals/money.html')
 
-
-
 def finsec(request):
-    print("finsecurity")
+    return render(request,  'goals/finsec.html')
 
-    profile = Profile.objects.get(user=request.user)
-    context = {
+def finsecA(request):
 
-        # 'achievement': achievement,
-        'profile': profile
-
-    }
-
-    return render(request, 'goals/finsec.html', context,)
+    return render(request,  'goals/finsecA.html')
 
 def finstab(request):
 

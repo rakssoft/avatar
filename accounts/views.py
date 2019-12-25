@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
-from .models import Profile, Product, Achievement
+from .models import Profile, Achievement
 from django.contrib import messages
 
 
@@ -30,17 +30,14 @@ def edit(request):
 
 @login_required
 def dashboard(request):
-    product = Product.objects.get()
+
     profile = Profile.objects.get(user=request.user)
     context = {
-        'product': product,
+
         # 'achievement': achievement,
         'profile': profile
 
     }
-
-
-    # return render(request,   'dashboard.html', {'section': 'dashboard'}, context,)
     return render(request,   'dashboard.html', context,)
 
 
@@ -86,17 +83,3 @@ def register(request):
         user_form = UserRegistrationForm()
         return render(request,'account/register.html',{'user_form': user_form})
 
-def product(request):
-
-    product = Product.objects.get()
-    profile = Profile.objects.get(user=request.user)
-    # achievement = Profile.objects.get(achievement=request.user)
-
-    context = {
-        'product': product,
-        # 'achievement': achievement,
-        'profile': profile
-
-    }
-
-    return render(request, 'product.html', context)

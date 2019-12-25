@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from accounts.models import Brand, Product, Achievement
+from accounts.models import Brand,  Achievement
 
 
 from .forms import CustomUser
@@ -20,9 +20,7 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     profile = Profile
 
-
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Brand)
-admin.site.register(Product)
 admin.site.register(Achievement)
 
