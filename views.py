@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from accounts.models import *
+from accounts.forms import PointAForm
+from django.shortcuts import redirect
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -28,9 +32,25 @@ def money(request):
 
     if (request.GET.get('print_btn')):
         if some_var == ['1']:
-            return render(request, 'goals/finsec.html')
+            achiv = Achievement.objects.get(id=2)
+            profile = Profile.objects.get(user=request.user)
+            profile.achievement = achiv
+            profile.save()
+            context = {
+
+                'profile': profile
+                 }
+            return render(request, 'goals/finsec.html', context)
         elif some_var == ['2']:
-            return render(request, 'goals/finstab.html')
+            achiv = Achievement.objects.get(id=1)
+            profile = Profile.objects.get(user=request.user)
+            profile.achievement = achiv
+            profile.save()
+            context = {
+
+                'profile': profile
+            }
+            return render(request,  'goals/finstab.html', context)
         elif some_var == ['3']:
             return render(request, 'goals/finind.html')
         elif some_var == ['4']:
@@ -39,12 +59,35 @@ def money(request):
             print("error")
     return render(request, 'goals/money.html')
 
-def hello(self):
-    print('Hello!' )
-
 def finsec(request):
-    print("finsecurity")
-    return render(request, 'goals/finsec.html')
+    return render(request,  'goals/finsec.html')
+
+
+def finsecA(request):
+    if request.method == "POST":
+        form = PointAForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+
+            доходы = form.cleaned_data['income']
+            расходы = form.cleaned_data['costs']
+            дельта = доходы - расходы
+            print(дельта)
+
+            return redirect('/')
+        else:
+            return HttpResponse(u'Куда прёшь?', status_code=400)
+            # post = form.save(commit=False)
+            # point_a = form.save(commit=False)
+            # point_a.author = request.user
+            # point_a.save()
+  #  return redirect('post_detail', pk=post.pk)
+    else:
+
+        form = PointAForm()
+        return render(request, 'goals/finsecA.html', {'form': form})
+
 
 def finstab(request):
 
