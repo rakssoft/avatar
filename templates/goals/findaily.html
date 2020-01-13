@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+
+
+
+
+
+
+
+
+    <h4>Финансовая безопасность.</h4>
+    <h5>Форма дневных успехов</h5>
+
+          <form method="POST" class="post-form">
+          {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+    <h5> Ваш доход за прошедшый день {{ income_day }}</h5>
+
+    {% endif %}
+
+
+{% endblock content %}

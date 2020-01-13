@@ -30,13 +30,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('Base/', include('Base.urls')),
-    path('goals/', goals, name='goals'),
-    path('goals/money', money, name='money'),
-    path('money/finsec', finsec, name='finsec'),
-    path('money/finsec/finsecA', finsecA, name='finsecA'),
-    path('money/finstab', finstab, name='finstab'),
-    path('money/finind', finind, name='finond'),
-    path('money/finsfree', finfree, name='finfree'),
 
     # path('', include('Base.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

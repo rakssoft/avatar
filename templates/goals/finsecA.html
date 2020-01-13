@@ -13,16 +13,19 @@
 
     <h4>Финансовая безопасность.</h4>
     <h4>Точка А.</h4>
-   <p><input type="number" size="3" name="num" min="1" max="100000" value="1"{{ pointa.income }}></p>
 
 
 
-{#      income = models.IntegerField(max_length=10)  #доходы#}
-{#    costs = models.IntegerField(max_length=10)   #расходы#}
-{#    debts = models.IntegerField(max_length=10)    #долги#}
-{#    assets = models.IntegerField(max_length=10)       #активы#}
-{#    capital = models.IntegerField(max_length=11)   # капитал#}
-{#    date_of_day = models.DateField(blank=True, null=True)   #текущая дата#}
+
+      <form method="POST" class="post-form">
+          {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+
+
+
 
 
 
