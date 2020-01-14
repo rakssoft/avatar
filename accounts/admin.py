@@ -1,10 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from accounts.models import Brand,  Achievement
+from accounts.models import Brand,  Achievement, Profile
 
 
 from .forms import CustomUser
-from .models import Profile
 from django.contrib import admin
 
 

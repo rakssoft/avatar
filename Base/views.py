@@ -5,6 +5,7 @@ from accounts.forms import PointAForm, IncomeDailyForm
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from Base.models import PointA, IncomeDaily
+from collections import Counter
 
 # Create your views here.
 
@@ -104,19 +105,32 @@ def fin_daily(request):
         all_pointb = IncomeDaily.objects.all()
         income_day = all_pointb.last().income_daily
         # pillow_all = sum(all_pointb.values('pillow_all'))
-        # debts_all =
+        all = all_pointb.values('pillow_all')
+        # for value in all.values():
+        #     print(value)
+        #     print(key)
 
-        return render(request, 'goals/findaily.html', {'form': form_daily, 'income_day': income_day})
+        total_pillow = Counter()
+        for d in all:
+            total_pillow.update(d)
+            print(total_pillow)
+
+            # total_pillow =total_pillow + value  # Accumulate the values in total_income
+
+    #    return render(request, 'goals/findaily.html', {'form': form_daily})
+        return render(request, 'goals/findaily.html', {'form': form_daily, 'income_day': income_day, 'total_pillow':total_pillow})
 
 def finsecurity(request):
+    all_pointb = IncomeDaily.objects.all()
     profile = Profile.objects.get(user=request.user)
     all = PointA.objects.all()
     cost = all[0].costs    # расоходы
     point_capital = all[0].capital
     dbs = PointA.objects.all()
-    db = dbs[0].debts
-    pillow = cost*6
+    db = dbs[0].debts  # долг общий
+    pillow = cost*6    # подушка  умноженная на 6 расходов
     context = {
+
         'pillow': pillow,
         'profile': profile,
         'db': db,

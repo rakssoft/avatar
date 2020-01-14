@@ -4,9 +4,12 @@ from .models import CustomUser
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .models import Profile
-
+from Base.models import PointA, IncomeDaily
 
 User = get_user_model()
+
+
+
 
 
 class UserEditForm(forms.ModelForm):
@@ -34,3 +37,14 @@ class UserRegistrationForm(forms.ModelForm):
             if cd['password'] != cd['password2']:
                 raise forms.ValidationError('Passwords don\'t match.')
             return cd['password2']
+
+class PointAForm(forms.ModelForm):
+    class Meta:
+        model = PointA
+        fields = ('income', 'costs', 'debts', 'assets')
+
+
+class IncomeDailyForm(forms.ModelForm):
+    class Meta:
+        model = IncomeDaily
+        fields = ('income_daily', 'pillow_all', 'debts_all')

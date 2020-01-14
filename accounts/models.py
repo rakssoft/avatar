@@ -5,7 +5,8 @@ from django.conf import settings
 
 
 
-
+class Tests(models.Model):
+    testeruserss = models.CharField(max_length=125)
 # Create your models here.
 
 class Brand(models.Model):
